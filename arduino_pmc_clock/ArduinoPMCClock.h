@@ -20,8 +20,8 @@ public:
     void ntpClientEnd();
     //NTPClient getNTPClient();
 
-    //bool forceSyncNTP();
-    //bool forceSyncRTC();
+    bool forceSyncNTP();
+    bool forceSyncRTC();
 
 private:
     // Private members

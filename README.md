@@ -1,11 +1,12 @@
 # Arduino PMC Clock Library
+Documentaion and Class written with the help of chatGPT.
 The Arduino PMC Clock Library provides an easy way to get milisecond unix epoch timestamps, synchronizing the millis() function on your Arduino Portenta Machine Control board with a Network Time Protocol (NTP) server and the Real Time Clock (RTC). This library helps to keep accurate time on your board by automatically synchronizing with an NTP server and the RTC periodically to minimize drift. The ArduinoPMCClock class is based on NTPClient examples and Arduino Portenta Machine Control Real Time Clock examples.
 
 Works with the Arduino Portenta Machine control, will be modified/tested to also work with the Arduino Opta at some point.
 
 ## Features
-- Synchronize Arduino clock with an NTP server
-- Periodically sync the clock to maintain accurate time
+- Synchronize Arduino millis() with an NTP server
+- Periodically sync to maintain accurate time
 - Automatically handle millis() rollover
 - Customizable NTP and RTC sync intervals
 - Supports multiple constructors for different configurations
@@ -25,30 +26,30 @@ Include the library and create an instance of the ArduinoClock class by passing 
 #include <Udp.h>
 
 UDP udp; // Can be WiFiUDP or EthernetUDP
-ArduinoClock clock(udp);
+ArduinoClock arduino_clock(udp);
 
 ```
 Begin the NTP client upon network connection:
 ```cpp
 void onNetworkConnect() {
-    clock.ntpClientBegin();
+    arduino_clock.ntpClientBegin();
 }
 ```
 End the NTP client when network connection is lost (The begin and end work well with the Arduino_ConnectionHandler library):
 ```cpp
 void onNetworkDisconnect() {
-    clock.ntpClientEnd();
+    arduino_clock.ntpClientEnd();
 }
 ```
 Call the tick() method in the loop, to keep synchronizing according to the NTP Sync and RTC Sync rates:
 ```cpp
 void loop() {
-  clock.tick();
+  arduino_clock.tick();
 }
 ```
 Get the current Unix timestamp in milliseconds using getEpochMillis():
 ```cpp
-uint64_t currentTimestamp = clock.getEpochMillis();
+uint64_t currentTimestamp = arduino_clock.getEpochMillis();
 ```
 
 ## Example
@@ -63,7 +64,7 @@ EthernetUDP ntpUDP;
 // Replace with your local NTP server address
 const char* timeServer = "pool.ntp.org";
 
-ArduinoClock clock(ntpUDP, timeServer);
+ArduinoClock arduino_clock(ntpUDP, timeServer);
 
 void setup() {
   Serial.begin(9600);
@@ -82,9 +83,9 @@ void loop() {
       return;
   }
 
-  clock.tick();
+  arduino_clock.tick();
 
-  uint64_t currentTimestamp = clock.getEpochMillis();
+  uint64_t currentTimestamp = arduino_clock.getEpochMillis();
   Serial.print("Current Timestamp: ");
   Serial.println(currentTimestamp);
 
@@ -92,11 +93,11 @@ void loop() {
 }
 
 void onNetworkConnect() {
-    clock.ntpClientBegin();
-    clock.forceSyncNTP(); // Sync on connect
+    arduino_clock.ntpClientBegin();
+    arduino_clock.forceSyncNTP(); // Sync on connect
 }
 
 void onNetworkDisconnect() {
-    clock.ntpClientEnd();
+    arduino_clock.ntpClientEnd();
 }
 ```

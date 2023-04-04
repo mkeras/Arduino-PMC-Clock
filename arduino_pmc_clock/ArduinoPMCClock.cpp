@@ -123,3 +123,12 @@ void ArduinoClock::tick() {
     }
 }
 
+bool ArduinoClock::forceSyncNTP() {
+  return syncNTP();
+}
+
+
+bool ArduinoClock::forceSyncRTC() {
+  return syncRTC();
+}
+
