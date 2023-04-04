@@ -23,10 +23,10 @@ Works with the Arduino Portenta Machine control, will be modified/tested to also
 Include the library and create an instance of the ArduinoClock class by passing a reference to a UDP instance:
 ```cpp
 #include <ArduinoPMCClock.h>
-#include <Udp.h>
+#include <Arduino_ConnectionHandler.h>
 
-UDP udp; // Can be WiFiUDP or EthernetUDP
-ArduinoClock arduino_clock(udp);
+EthernetUDP ntpUDP; // Can be WiFiUDP or EthernetUDP
+ArduinoClock arduino_clock(ntpUDP);
 
 ```
 Begin the NTP client upon network connection:
