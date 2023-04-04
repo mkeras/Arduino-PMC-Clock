@@ -93,6 +93,7 @@ void loop() {
 
 void onNetworkConnect() {
     clock.ntpClientBegin();
+    clock.forceSyncNTP(); // Sync on connect
 }
 
 void onNetworkDisconnect() {
