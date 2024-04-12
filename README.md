@@ -1,6 +1,6 @@
 # Arduino PMC Clock Library
 
-This repo is no depreciated due to the new [https://github.com/arduino-libraries/Arduino_PortentaMachineControl](Arduino Portenta Machine Control Library).
+This repo is no depreciated due to the new [Arduino Portenta Machine Control Library](https://github.com/arduino-libraries/Arduino_PortentaMachineControl).
 
 The Arduino PMC Clock Library provides an easy way to get milisecond unix epoch timestamps, synchronizing the millis() function on your Arduino Portenta Machine Control board with a Network Time Protocol (NTP) server and the Real Time Clock (RTC). This library helps to keep accurate time on your board by automatically synchronizing with an NTP server and the RTC periodically to minimize drift. The ArduinoPMCClock class is based on NTPClient examples and Arduino Portenta Machine Control Real Time Clock examples.
 
